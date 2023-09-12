@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+const cors = require("cors")
 const storyRoute = require("./routes/story")
 
 require("dotenv").config();
 app.use(express.json());
 
-
+app.use(cors());
 app.use("/user", storyRoute);
 
 const connect = async () => {
