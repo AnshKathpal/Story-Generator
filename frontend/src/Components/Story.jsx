@@ -22,7 +22,7 @@ export const Story = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8080/user/story", {
+      const response = await axios.post("https://story-generator-yc65.onrender.com/user/story", {
         keyword: text,
       });
 
