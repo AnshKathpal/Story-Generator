@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components"
 
 export const Story = () => {
   const [displayStory, setDisplayStory] = useState("");
@@ -50,20 +51,14 @@ export const Story = () => {
   return (
     <Flex
       bg="#EEEEEE"
-      gap="20"
+      gap={{base : "5" , lg : "20"}}
       direction={"column"}
-      h="100vh"
-      justify={"center"}
+      h={{base : "100vh", lg : "100vh"}}
+      justify={{base : "flex-start" , lg : "center"}}
       align="center"
+      p = {{base : "10", lg : "0"}}
     >
-      <form
-        style={{
-          padding: "30px",
-          width: "70%",
-          backgroundColor: "#FFF1DC",
-          boxShadow:
-            "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
-        }}
+      <FormStyle
         onSubmit={handleSubmit}
       >
         <FormControl
@@ -71,17 +66,17 @@ export const Story = () => {
           flexDirection={"column"}
           justifyContent="center"
           align="center"
-          gap="10"
+          gap={{base : "5" , lg : "10"}}
         >
           <Box
-            fontSize={"5xl"}
+            fontSize={{base : "4xl" , lg : "5xl"}}
             fontWeight="bold"
             fontFamily="'Great Vibes', cursive"
           >
             Story Generator
           </Box>
           <FormLabel
-            fontSize={"xl"}
+            fontSize={{base : "l" , lg : "xl"}}
             fontFamily="'Permanent Marker', cursive"
             textAlign={"center"}
             m="auto"
@@ -91,7 +86,7 @@ export const Story = () => {
           <Input
             type="text"
             textAlign={"center"}
-            fontSize={"xl"}
+            fontSize={{base : "l" , lg : "xl"}}
             fontFamily="'Permanent Marker', cursive"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -102,7 +97,7 @@ export const Story = () => {
             colorScheme="teal"
             disabled={isSubmitDisabled}
             bg="#3A98B9"
-            w="20%"
+            w={{base : "90%", lg : "20%"}}
             m="auto"
             fontFamily="'Great Vibes', cursive"
             fontSize={"xl"}
@@ -110,7 +105,7 @@ export const Story = () => {
             Generate Story
           </Button>
         </FormControl>
-      </form>
+      </FormStyle>
       {loading && <Spinner size="lg" mt={4} />}
       {error && <Box color="red">{error}</Box>}
       {displayStory && (
@@ -126,7 +121,7 @@ export const Story = () => {
             }
             bg="#FFF1DC"
             fontFamily="'Permanent Marker', cursive"
-            w="70%"
+            w={{base : "100%", lg : "70%"}}
             h="auto"
             mt={4}
           >
@@ -135,7 +130,7 @@ export const Story = () => {
               onClick={handleReset}
               bg="#3A98B9"
               colorScheme="teal"
-              w="20%"
+              w={{base : "100%" , lg : "20%"}}
               fontFamily="'Great Vibes', cursive"
               fontSize={"xl"}
             >
@@ -147,3 +142,19 @@ export const Story = () => {
     </Flex>
   );
 };
+
+
+const FormStyle = styled.form`
+
+padding : 30px;
+width : 70%;
+background-color : #FFF1DC;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+@media screen and (max-width : 480px){
+  padding : 20px;
+  width : 100%;
+}
+
+
+`
